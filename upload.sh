@@ -11,7 +11,7 @@ while read -r line; do
     name="$line"
     #echo "Name read from file - $name"
     #ssh $name "echo hostname=$hname\ntimestamp=$tstamp\nip=$ip\n >> list.txt"
-    echo -e "hostname=$hname\ntimestamp=$tstamp\nip=$ip\n" | ssh -o ConnectTimeout=1 -o BatchMode=yes $name "cat >> list.txt"
+    printf "hostname=$hname\ntimestamp=$tstamp\nip=$ip\n" | ssh -o ConnectTimeout=1 -o BatchMode=yes $name "cat >> list.txt"
     if [ $? -eq 0 ]; then
         echo "Success Wrote to $name"
     fi
